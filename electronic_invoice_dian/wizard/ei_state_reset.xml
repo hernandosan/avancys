@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+    <data>
+
+        <record id="ei_state_reset_view" model="ir.ui.view">
+            <field name="name">Revertir Estado de Factura Electrónica</field>
+            <field name="model">ei.state.reset</field>
+            <field name="arch" type="xml">
+                <form string="Revertir Estado de Factura Electrónica">
+                    <h4>El estado sera revertido a No Transferido, ¿Desea Continuar?</h4>
+                    <h5>El Log generado previamente, no será eliminado."</h5>
+                    <footer>
+                        <button name="reset_ei_state" string="Confirmar" type="object" class="oe_stat_button" icon="fa-check-circle" />
+                        <button string="Cancel" class="oe_stat_button" icon="fa-times-circle" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_ei_state_reset" model="ir.actions.act_window">
+            <field name="name">Resetear Estado de Factura Electrónica</field>
+            <field name="res_model">ei.state.reset</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="ei_state_reset_view" />
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</data>

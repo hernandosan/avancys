@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="action_account_advance_customer_tree_action" model="ir.actions.act_window">
+            <field name="name">Anticipo Cliente</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.advance.customer</field>
+            <field name="view_mode">tree,kanban,form</field>
+        </record>
+        
+        <menuitem 
+            id="action_account_advance_customer_tree_menu" 
+            name="Anticipo Cliente" 
+            parent="account.menu_finance_receivables" 
+            sequence="70" 
+            action="action_account_advance_customer_tree_action" 
+            groups="account.group_account_manager"/>
+        
+        <record id="account_advance_customer_form_view" model="ir.ui.view">
+            <field name="name">account.advance.customer.form.view</field>
+            <field name="model">account.advance.customer</field>
+            <field name="arch" type="xml">
+                <form string="Anticipo Cliente">
+                    <header>
+                        <button name="action_validated" type="object" states="draft" string="Aprobar" groups="account.group_account_manager" class="oe_highlight"/>
+                        <button name="action_posted" type="object" states="validated" string="Contabilizar" class="oe_highlight"/>
+                        <button name="action_refused" type="object" states="validated" string="Rechazar" class="oe_highlight"/>
+                        <button name="action_draft" type="object" string="Cambiar a borrador" states="refused"/>
+                        <button name="action_cancelled" type="object" states="draft,validated,refused" string="Cancelar"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,validated,posted,refused,cancelled"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group name="head" col="2">
+                            <group name="head-left">
+                                <field name="user_id" required="1" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+                                <field name="partner_id" required="1" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+                                <field name="sale_id" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+                                <field name="account_analytic_id" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+                                <field name="company_id" required="1" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+                                <field name="currency_id" required="1" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+                            </group>
+                            <group name="head-right">
+                                <field name="request_date" required="1" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+                                <field name="planned_date" required="1" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+                                <field name="pay_date" required="1" attrs="{'readonly': [('state','not in',('draft',))]}"/>
+                                <field name="amount" required="1" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+                                <field name="remaining" readonly="1" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+                                <field name="crossed" attrs="{'invisible': [('state','not in',('posted',))]}"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="description" string="Descripcion">
+                                <field name="description" required="1" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+                            </page>
+                            <page name="accounting" string="Contabilidad">
+                                <group>
+                                    <field name="journal_id" attrs="{'readonly': [('state','not in',('draft',))]}" required="1"/>
+                                    <field name="move_id" readonly="1"/>
+                                    <field name="full_reconcile_id" attrs="{'invisible': [('state','not in',('posted',))]}"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="account_advance_customer_tree_view" model="ir.ui.view">
+            <field name="name">account.advance.customer.tree.view</field>
+            <field name="model">account.advance.customer</field>
+            <field name="arch" type="xml">
+                <tree string="Anticipos Cliente">
+                    <field name="name"/>
+                    <field name="move_id"/>
+                    <field name="user_id"/>
+                    <field name="partner_id"/>
+                    <field name="request_date"/>
+                    <field name="amount"/>
+                    <field name="currency_id"/>
+                    <field name="local_currency_id"/>
+                    <field name="pay_date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>

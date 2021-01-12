@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="cc_res_partner_document_type" model="res.partner.document.type">
+            <field name="name">Cédula de ciudadanía</field>
+            <field name="code">CC</field>
+            <field name="code_dian">13</field>
+        </record>
+
+        <record id="ni_res_partner_document_type" model="res.partner.document.type">
+            <field name="name">Número de identificación tributaria</field>
+            <field name="code">NI</field>
+            <field name="code_dian">31</field>
+        </record>
+
+        <record id="ce_res_partner_document_type" model="res.partner.document.type">
+            <field name="name">Cédula de extranjería</field>
+            <field name="code">CE</field>
+            <field name="code_dian">22</field>
+        </record>
+
+        <record id="ti_res_partner_document_type" model="res.partner.document.type">
+            <field name="name">Tarjeta de identidad</field>
+            <field name="code">TI</field>
+            <field name="code_dian">12</field>
+        </record>
+
+        <record id="pa_res_partner_document_type" model="res.partner.document.type">
+            <field name="name">Pasaporte</field>
+            <field name="code">PA</field>
+            <field name="code_dian">41</field>
+        </record>
+
+        <record id="rc_res_partner_document_type" model="res.partner.document.type">
+            <field name="name">	Registro civil de nacimiento</field>
+            <field name="code">RC</field>
+            <field name="code_dian">11</field>
+        </record>
+
+        <record id="cd_res_partner_document_type" model="res.partner.document.type">
+            <field name="name">Came Diplomatico</field>
+            <field name="code">CD</field>
+            <field name="code_dian"></field>
+        </record>
+
+        <record id="te_res_partner_document_type" model="res.partner.document.type">
+            <field name="name">Tarjeta de extranjería</field>
+            <field name="code">TE</field>
+            <field name="code_dian">21</field>
+        </record>
+
+        <record id="de_res_partner_document_type" model="res.partner.document.type">
+            <field name="name">Documento de identificación extranjero</field>
+            <field name="code">DE</field>
+            <field name="code_dian">42</field>
+        </record>
+
+        <record id="si_res_partner_document_type" model="res.partner.document.type">
+            <field name="name">Sin identificación del exterior o para uso definido por la DIAN</field>
+            <field name="code">SI</field>
+            <field name="code_dian">43</field>
+        </record>
+
+    </data>
+</odoo>
+
+

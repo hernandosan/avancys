@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+
+        <record id="model_basic_payslip_novelty_form" model="ir.ui.view">
+            <field name="name">model.basic.payslip.novelty.form</field>
+            <field name="model">model.basic.payslip.novelty</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Template">
+                    <header>
+                        <button name="to_cancel" string="Cancelar" type="object" attrs="{'invisible':[('state','=','cancel')]}" />
+                        <button name="to_draft" string="Pasar a borrador" type="object" attrs="{'invisible':[('state','=','draft')]}" />
+                        <button name="to_confirm" string="Confirmar" type="object" attrs="{'invisible':[('state','!=','draft')]}" />
+                        <button name="to_validated" string="Validar" type="object" attrs="{'invisible':[('state','!=','confirm')]}" />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,validated,paid" />
+                    </header>
+                    <sheet>
+                        <div name="title">
+                            <h1>
+                                <field name="name" />
+                            </h1>
+                        </div>
+                        <group name="group_basic_data">
+                            <group>
+                                <field name="contract_id" attrs="{'readonly':[('state','!=','draft')]}" />
+                                <field name="approve_date" attrs="{'readonly':[('state','!=','draft')]}" />
+                                <span class="o_form_label o_td_label" name="label_dates" />
+                                <div name="div_dates">
+                                    <field name="date_start" nolabel="1" placeholder="Inicio" attrs="{'readonly':[('state','!=','draft')]}" style="text-align: center; float: left; width: 50%;" />
+                                    <field name="date_end" nolabel="1" placeholder="Fin" attrs="{'readonly':[('state','!=','draft')]}" style="text-align: center; float: left; width: 50%;" />
+                                </div>
+                            </group>
+                            <group>
+                                <field name="employee_id" attrs="{'readonly':[('state','!=','draft')]}" />
+                                <field name="amount" widget="monetary" attrs="{'readonly':[('state','!=','draft')]}" />
+                                <field name="company_id" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="res_partner_account_avancys_form" model="ir.ui.view">
+            <field name="name">res.partner.account.avancys.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name="category_id" position="after">
+                    <field name="ciiu_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="res_partner_property_avancys_form" model="ir.ui.view">
+            <field name="name">res.partner.property.avancys.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="account.view_partner_property_form"/>
+            <field name="arch" type="xml">
+                <field name="property_account_payable_id" position="after">
+                    <field name="property_account_advance_customer_id"/>
+                    <field name="property_account_advance_supplier_id"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

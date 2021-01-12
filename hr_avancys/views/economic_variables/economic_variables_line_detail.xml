@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+
+        <record id="economic_variable_line_detail_form" model="ir.ui.view">
+            <field name="name">economic.variable.line.detail.form</field>
+            <field name="model">economic.variable.line.detail</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="has_lower_limit" widget="boolean_toggle" />
+                                <field name="lower_limit" nolabel="1" attrs="{'invisible':[('has_lower_limit','=',False)]}" />
+                            </group>
+                            <group>
+                                <field name="has_upper_limit" widget="boolean_toggle" />
+                                <field name="upper_limit" nolabel="1" attrs="{'invisible':[('has_upper_limit','=',False)]}" />
+                            </group>
+                        </group>
+                        <div class="o_row">
+                            <span style="font-size: 180%;">Valor = (DatoEntrada - </span>
+                            <field name="subtract" />
+                            <span style="font-size: 180%;">) * </span>
+                            <field name="rate" />
+                            <span style="font-size: 180%;">%  +</span>
+                            <field name="add" />
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="economic_variable_line_detail_tree" model="ir.ui.view">
+            <field name="name">economic.variable.line.detail.tree</field>
+            <field name="model">economic.variable.line.detail</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="lower_limit" />
+                    <field name="upper_limit" />
+                    <field name="subtract" />
+                    <field name="rate" />
+                    <field name="add" />
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>

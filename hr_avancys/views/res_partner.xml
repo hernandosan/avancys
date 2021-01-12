@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="res_partner_avancys_form">
+      <field name="name">res.partner.avancys.form</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form" />
+      <field name="arch" type="xml">
+
+        <xpath expr="//sheet/div/field[@name='company_type']" position="after">
+          <div class="oe_edit_only" attrs="{'invisible': [('company_type','=','person')]}">
+            <field name="legal_status_type" widget="radio" options="{'horizontal': true}" />
+          </div>
+        </xpath>
+
+        <field name="name" position='after'>
+          <div class="oe_edit_only" attrs="{'invisible': [('company_type','=','company'),('legal_status_type','=','legal')]}">
+            <group col="4">
+              <field name="first_name" placeholder="Primer Nombre" nolabel="1" attrs="{'required': ['|',('company_type','=','person'),'&amp;',('company_type','=','company'),('legal_status_type','=','natural')]}" />
+              <field name="second_name" placeholder="Segundo Nombre" nolabel="1" />
+              <field name="first_surname" placeholder="Primer Apellido" nolabel="1" attrs="{'required': ['|',('company_type','=','person'),'&amp;',('company_type','=','company'),('legal_status_type','=','natural')]}" />
+              <field name="second_surname" placeholder="Segundo Apellido" nolabel="1" />
+            </group>
+          </div>
+        </field>
+
+        <xpath expr="//sheet/group/group/div/field[@name='street']" position="replace" />
+        <xpath expr="//sheet/group/group/div/field[@name='street2']" position="replace" />
+        <xpath expr="//sheet/group/group/div/field[@name='city']" position="replace" />
+        <xpath expr="//sheet/group/group/div/field[@name='state_id']" position="replace" />
+        <xpath expr="//sheet/group/group/div/field[@name='zip']" position="replace" />
+        <xpath expr="//sheet/group/group/div/field[@name='country_id']" position="replace" />
+        <xpath expr="//sheet/group/group/field[@name='vat']" position="replace" />
+
+        <xpath expr="//sheet/group/group/span[@name='address_name']" position="replace">
+          <field name="ref_num" attrs="{'required':[('company_type','=','company')]}" />
+          <field name="verification_code" />
+          <field name="ref_type_required" invisible="1" />
+          <field name="ref_type_id" attrs="{'required':['|',('ref_type_required','=',True),('company_type','=','company')]}" />
+          <field name="country_id" class="o_address_country" options="{'no_open': True, 'no_create': True}" attrs="{'required':[('company_type','=','company')]}" />
+          <field name="state_id" class="o_address_state" options="{'no_open': True, 'no_create': True}" context="{'country_id': country_id, 'zip': zip}" attrs="{'required':[('company_type','=','company')]}" />
+          <field name="city" invisible="1" />
+          <field name="city_id" class="o_address_city" options="{'no_open': True, 'no_create': True}" attrs="{'required':[('company_type','=','company')]}" />
+          <field name="zip" class="o_address_zip" />
+          <span class="o_form_label o_td_label" name="address_name">
+            <b attrs="{'invisible': [('type', '!=', 'contact')]}">Dirección</b>
+            <b attrs="{'invisible': [('type', '!=', 'invoice')]}">Dirección Factura</b>
+            <b attrs="{'invisible': [('type', '!=', 'delivery')]}">Dirección Entrega</b>
+            <b attrs="{'invisible': [('type', '!=', 'other')]}">Dirección 2</b>
+            <b attrs="{'invisible': [('type', '!=', 'private')]}">Dirección Privada</b>
+            <b attrs="{'invisible': [('type', '!=', False)]}">Dirección Sin Tipo</b>
+          </span>
+          <div class="o_row">
+            <field name="street" class="o_address_street" nolabel="1" attrs="{'required':[('company_type','=','company')]}" />
+            <field name="street2" class="o_address_street" nolabel="1" placeholder="Complemento" />
+          </div>
+        </xpath>
+
+        <field name="phone" position="attributes">
+          <attribute name="attrs">{'required': [('company_type','=','company')]}</attribute>
+        </field>
+
+        <xpath expr="//sheet/notebook/page[@name='internal_notes']" position="inside">
+          <div class="oe_edit_only">
+            <label for="active" name="active_labe" string="Activo" />
+            <field name="active" />
+          </div>
+        </xpath>
+
+        <xpath expr="//sheet/notebook/page[@name='internal_notes']" position="after">
+          <page name="human_resource" string="Recursos Humanos">
+            <group attrs="{'invisible': [('company_type','=','company')]}">
+              <field name="employee" />
+              <field name="employee2emergency_id" />
+            </group>
+            <group name="group_company_hr_info" attrs="{'invisible': [('company_type','=','person')]}">
+              <group name="group_company_hr_info_checks">
+                <field name="eps" />
+                <field name="arl" />
+                <field name="afp" />
+                <field name="ccf" />
+              </group>
+              <group name="group_company_hr_info_codes">
+                <field name="eps_code" />
+                <field name="arl_code" />
+                <field name="afp_code" />
+                <field name="ccf_code" />
+              </group>
+            </group>
+          </page>
+        </xpath>
+
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="res_partner_avancys_account_form">
+      <field name="name">res.partner.avancys.account.form</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="account.view_partner_property_form" />
+      <field name="arch" type="xml">
+        <xpath expr="//notebook/page[@name='accounting']" position="attributes">
+          <attribute name="attrs">{'invisible': False}</attribute>
+        </xpath>
+
+        <xpath expr="//notebook/page[@name='accounting_disabled']" position="attributes">
+          <attribute name="invisible">True</attribute>
+        </xpath>
+
+        <xpath expr="//notebook/page[@name='accounting']/group/group[@name='accounting_entries']/field[@name='currency_id']" position="after">
+          <field name="company_id" />
+        </xpath>
+      </field>
+    </record>
+
+    <!--<xpath expr="//sheet/group" position='replace'>
+          <group>
+            <group>
+              
+            </group>
+            <group>
+            </group>
+          </group>
+        </xpath> -->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="hr_avancys.action_window">
+      <field name="name">hr_avancys window</field>
+      <field name="res_model">hr_avancys.hr_avancys</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="hr_avancys.action_server">
+      <field name="name">hr_avancys server</field>
+      <field name="model_id" ref="model_hr_avancys_hr_avancys"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="hr_avancys" id="hr_avancys.menu_root"/>
+-->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="hr_avancys.menu_1" parent="hr_avancys.menu_root"/>
+    <menuitem name="Menu 2" id="hr_avancys.menu_2" parent="hr_avancys.menu_root"/>
+-->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="hr_avancys.menu_1_list" parent="hr_avancys.menu_1"
+              action="hr_avancys.action_window"/>
+    <menuitem name="Server to list" id="hr_avancys" parent="hr_avancys.menu_2"
+              action="hr_avancys.action_server"/>
+-->
+  </data>
+</odoo>

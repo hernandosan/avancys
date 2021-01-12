@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="account_account_type_menu_action" model="ir.actions.act_window">
+            <field name="name">Tipos de Cuenta</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.account.type</field>
+            <field name="view_mode">tree,kanban,form</field>
+        </record>
+        
+        <menuitem 
+            id="account_account_type_menu" 
+            name="Tipos de Cuenta" 
+            parent="account.account_account_menu" 
+            sequence="20" 
+            action="account_account_type_menu_action" 
+            groups="account.group_account_manager"/>
+        
+        <record id="account_account_type_avancys_form" model="ir.ui.view">
+            <field name="name">account.account.type.avancys.form</field>
+            <field name="model">account.account.type</field>
+            <field name="inherit_id" ref="account.view_account_type_form"/>
+            <field name="arch" type="xml">
+                <field name="type" position="after">
+                    <field name="internal_group" required="1"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+
+        <record id="hr_novelty_form" model="ir.ui.view">
+            <field name="name">hr.novelty.form</field>
+            <field name="model">hr.novelty</field>
+            <field name="inherit_id" ref="model_basic_payslip_novelty_form" />
+            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/group[@name='group_basic_data']/group/field[@name='approve_date']" position='after'>
+                    <field name="type_novelty" attrs="{'readonly':[('state','!=','draft')]}" />
+                </xpath>
+                <xpath expr="//sheet/group[@name='group_basic_data']/group/span[@name='label_dates']" position='inside'>
+                    <b attrs="{'invisible': [('type_novelty', '!=', 'RECURRENT')]}">Duración</b>
+                    <b attrs="{'invisible': [('type_novelty', '!=', 'STATIC')]}">Fecha</b>
+                </xpath>
+                <xpath expr="//sheet/group[@name='group_basic_data']/group/div/field[@name='date_end']" position='attributes'>
+                    <attribute name="attrs">{'invisible': [('type_novelty', '=', 'STATIC')], 'readonly':[('state','!=','draft')]}</attribute>
+                </xpath>
+                <xpath expr="//sheet/group[@name='group_basic_data']/group/field[@name='company_id']" position='after'>
+                    <field name="novelty_type_id" attrs="{'readonly':[('state','!=','draft')]}" />
+                </xpath>
+                <xpath expr="//sheet/group[@name='group_basic_data']" position='after'>
+                    <notebook>
+                        <page name='page_novelty_line' string="Lineas de Novedad">
+                            <field name="novelty_line_ids">
+                                <tree>
+                                    <field name="period_id" />
+                                    <field name="amount" />
+                                    <field name="state" />
+                                    <!-- <field name="payslip_id"/> -->
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="hr_novelty_tree" model="ir.ui.view">
+            <field name="name">hr.novelty.tree</field>
+            <field name="model">hr.novelty</field>
+            <field name="type">tree</field>
+            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="contract_id" />
+                    <field name="novelty_type_id" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="hr_novelty_action" model="ir.actions.act_window">
+            <field name="name">Novedades</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.novelty</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="hr_novelty_menu_act" name="Novedades" parent="novelty_menu_categ" action="hr_novelty_action" sequence="1" />
+
+    </data>
+
+    <data noupdate="1">
+        <record id="seq_hr_novelty" model="ir.sequence">
+            <field name="name">Número Novedad</field>
+            <field name="code">seq.hr.novelty</field>
+            <field name="prefix">NOV-</field>
+            <field name="padding">10</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- account_financial_structure -->
+        <menuitem 
+            id="menu_financial_avancys_report" 
+            name="Reportes Contables" 
+            parent="account.menu_finance_configuration"
+        />
+
+        <record id="action_account_financial_structure_tree_action" model="ir.actions.act_window">
+            <field name="name">Configuración Informes Contables</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.financial.structure</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <menuitem 
+            id="action_account_financial_structure_tree_menu" 
+            name="Configuración Informes Contables" 
+            parent="menu_financial_avancys_report" 
+            sequence="2" 
+            action="action_account_financial_structure_tree_action" 
+            groups="account.group_account_manager"/>
+        
+        <record id="account_financial_structure_form_view" model="ir.ui.view">
+            <field name="name">account.financial.structure.form.view</field>
+            <field name="model">account.financial.structure</field>
+            <field name="arch" type="xml">
+                <form string="Estructura Informes">
+                    <sheet>
+                        <group name="head" col="2">
+                            <group name="head-left">
+                                <field name="name" required="1"/>
+                                <field name="company_id" required="1" attrs="{'no_create_edit': True}"/>
+                            </group>
+                            <group name="head-right">
+                                <field name="is_active"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="structure" string="Estructura">
+                                <group>
+                                    <field name="line_ids" nolabel="1">
+                                        <tree editable="bottom">
+                                            <field name="digits"/>
+                                            <field name="sequence"/>
+                                            <field name="description"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="account_financial_structure_tree_view" model="ir.ui.view">
+            <field name="name">account.financial.structure.tree.view</field>
+            <field name="model">account.financial.structure</field>
+            <field name="arch" type="xml">
+                <tree string="Estructura Informes">
+                    <field name="name"/>
+                    <field name="company_id"/>
+                    <field name="is_active"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- account.financial.levels -->
+
+        <record id="action_account_financial_levels_tree_action" model="ir.actions.act_window">
+            <field name="name">Niveles</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.financial.levels</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <menuitem 
+            id="action_account_financial_levels_tree_menu" 
+            name="Configuración Niveles" 
+            parent="menu_financial_avancys_report" 
+            sequence="2" 
+            action="action_account_financial_levels_tree_action" 
+            groups="account.group_account_manager"/>
+        
+        <record id="account_financial_levels_form_view" model="ir.ui.view">
+            <field name="name">account.financial.levels.form.view</field>
+            <field name="model">account.financial.levels</field>
+            <field name="arch" type="xml">
+                <form string="Nivel">
+                    <sheet>
+                        <group name="head" col="2">
+                            <group name="head-left">
+                                <field name="code" required="1"/>
+                                <field name="name" required="1"/>
+                            </group>
+                            <group name="head-right">
+                                <field name="help" required="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="account_financial_levels_tree_view" model="ir.ui.view">
+            <field name="name">account.financial.levels.tree.view</field>
+            <field name="model">account.financial.levels</field>
+            <field name="arch" type="xml">
+                <tree string="Nivel">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="help"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>

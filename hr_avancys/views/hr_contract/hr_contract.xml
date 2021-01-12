@@ -1,0 +1,217 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="hr_contract_view_form" model="ir.ui.view">
+            <field name="name">hr.contract.form</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//header/field[@name='state']" position="before">
+                    <button name="liquidate_contract" string="Liquidar contrato" type="object" attrs="{'invisible':[('state','!=','open')]}" />
+                </xpath>
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="attrs">{'readonly': True, 'force_save': True}</attribute>
+                </xpath>
+                <xpath expr="//group/field[@name='structure_type_id']" position="replace">
+                    <field name="hr_responsible_id" />
+                    <field name="contract_city_id" />
+                    <field name="work_city_id" />
+                </xpath>
+                <xpath expr="//group[@name='duration_group']" position="before">
+                    <group name="contract_work_info">
+                        <field name="contract_type_id" />
+                        <field name="term" />
+                        <field name="contract_group_id" />
+                        <field name="risk_id" />
+                        <field name="risk_percentage" />
+                        <field name="high_risk" />
+                    </group>
+                    <group name="social_security_info">
+                        <field name="eps_id" readonly="1" force_save="1" />
+                        <field name="afp_pension_id" readonly="1" force_save="1" />
+                        <field name="afp_severance_id" readonly="1" force_save="1" />
+                        <field name="arl_id" />
+                        <field name="ccf_id" />
+                    </group>
+                </xpath>
+                <xpath expr="//group[@name='duration_group']" position="replace" />
+                <xpath expr="//page[@name='other']" position="replace" />
+                <xpath expr="//page[@name='information']" position="replace">
+                    <page string="Detalles del Contrato" name="information">
+                        <group name="main_info">
+                            <group name="salary_and_advantages" string="Salario y Beneficios">
+                                <label for="wage" />
+                                <div class="o_row" name="wage">
+                                    <field name="wage" nolabel="1" readonly="1" force_save="1" />
+                                    <span>/ month</span>
+                                </div>
+                                <field name="bonus" />
+                                <field name="fiscal_type_id" widget="selection" />
+                                <field name="fiscal_subtype_id" widget="selection" />
+                                <field name="skip_commute_allowance" />
+                                <field name="remote_work_allowance" />
+                                <field name="minimum_wage" />
+                                <field name="limit_deductions" />
+                                <field name="workcenter" />
+                            </group>
+                            <group string="Duración" name="duration_information">
+                                <field name="first_contract_date" attrs="{'invisible': ['|', ('first_contract_date', '=', False), ('first_contract_date', '=', 'date_start')]}" />
+                                <field name="date_start" />
+                                <field name="date_end" />
+                                <label for="trial_date_start" />
+                                <div class="o_row" name="trial_duration">
+                                    <field name="trial_date_start" nolabel="1" readonly="1" force_save="1" />
+                                    <span>-</span>
+                                    <field name="trial_date_end" nolabel="1" readonly="1" force_save="1" />
+                                </div>
+                                <field name="contract_days" />
+                                <field name="calendar_mismatch" invisible="1" />
+                                <field name="resource_calendar_id" required="1" />
+                                <field name="schedule_pay" />
+                                <field name="apprentice_to_worker_date" />
+                            </group>
+                            <group string="Liquidación" name="settlement_information">
+                                <field name="settlement_date" />
+                                <field name="settlement_period_id" />
+                                <field name="settlement_type" />
+                            </group>
+                            <group string="Deducciones" name="deductions_information">
+                                <field name="deduction_dependents" />
+                                <field name="deduction_by_estate" />
+                                <field name="deduction_by_healthcare" />
+                                <field name="deduction_by_icetex" />
+                            </group>
+                            <group string="Contabilidad" name="accountancy_information">
+                                <field name="journal_id" />
+                                <field name="analytic_distribution_ids">
+                                    <tree editable="bottom">
+                                        <field name="analytic_account_id" />
+                                        <field name="rate" />
+                                    </tree>
+                                </field>
+                            </group>
+                        </group>
+                        <group name="notes_group" string="Notas">
+                            <field name="notes" nolabel="1" />
+                        </group>
+                    </page>
+                    <page string="Control de Cambios" name="history_updates">
+                        <group name='wage_update_history' string="Histórico de Salario">
+                            <field name="wage_history_ids" nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="wage" />
+                                    <field name="date" />
+                                    <field name="user_id" />
+                                </tree>
+                            </field>
+                        </group>
+                        <group name='eps_update_history' string="Histórico de EPS">
+                            <field name="eps_history_ids" nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="eps_id" />
+                                    <field name="date" />
+                                    <field name="user_id" />
+                                </tree>
+                            </field>
+                        </group>
+                        <group name='pension_update_history' string="Histórico de Fondo de Pensiones">
+                            <field name="pension_history_ids" nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="afp_pension_id" />
+                                    <field name="date" />
+                                    <field name="user_id" />
+                                </tree>
+                            </field>
+                        </group>
+                        <group name='severance_update_history' string="Histórico de Fondo de Cesantías">
+                            <field name="severance_history_ids" nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="afp_severance_id" />
+                                    <field name="date" />
+                                    <field name="user_id" />
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                    <page string="Dotaciones" name="equipments">
+                        <group name="equipment_info">
+                            <field name="equipment_ids" nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="name" />
+                                    <field name="product_id" />
+                                    <field name="product_lot_id" />
+                                    <field name="amount_info" />
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                    <page string="Historial de Nóminas" name="payslips">
+                        <group name="payslips_info">
+                            <field name="paysplip_ids" nolabel="1" readonly="1">
+                                <tree>
+                                    <field name="name" />
+                                    <field name="period_id" />
+                                    <field name="accounting_date" />
+                                    <field name="liquidation_date" />
+                                    <field name="state" />
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                    <page string="Libro de vacaciones" name="holiday_book">
+                        <button name="update_days_left" string="Actualizar días restantes" type="object" />
+                        <group>
+                            <group>
+                                <field name="days_left" />
+                            </group>
+                            <group>
+                                <field name="date_ref_holiday_book" />
+                            </group>
+                        </group>
+                        <field name="holiday_book_ids">
+                            <tree>
+                                <field name="days_enjoyed" />
+                                <field name="days_paid" />
+                                <field name="days_suspension" />
+                                <field name="leave_id" />
+                                <field name="payslip_id" />
+                                <field name="initial_balance" />
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Prórrogas" name="extensions">
+                        <button name="extend_contract" type="object" string="Prorrogar" class="oe_stat_button" icon="fa-expand" />
+                        <group name="extension_info">
+                            <field name="contract_extension_ids" nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="sequence" />
+                                    <field name="date_from" />
+                                    <field name="date_to" />
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                    <page string="Rete-Fuente Procedimiento 2" name="withholding_p2_info">
+                        <group>
+                            <group>
+                                <field name="apply_procedure_2" />
+                            </group>
+                            <group>
+                                <field name="withholding_percent" />
+                            </group>
+                        </group>
+                        <group string="Detalle Calculado">
+                            <field name="withholding_log_ids" nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="name" />
+                                    <field name="value" />
+                                </tree>
+                            </field>
+                        </group>
+
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

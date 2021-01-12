@@ -1,0 +1,17 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_res_ciiu_manager,res.ciiu.manager,model_res_ciiu,account.group_account_manager,1,1,1,1
+access_account_move_tax,account.move.tax.manager,model_account_move_tax,account.group_account_manager,1,1,1,1
+access_account_advance_supplier,account.advance.supplier.manager,model_account_advance_supplier,account.group_account_manager,1,1,1,1
+access_account_advance_customer,account.advance.customer.manager,model_account_advance_customer,account.group_account_manager,1,1,1,1
+access_account_financial_structure_manager,account.financial.structure.manager,model_account_financial_structure,account.group_account_manager,1,1,1,1
+access_account_financial_structure_line_manager,account.financial.structure.line.manager,model_account_financial_structure_line,account.group_account_manager,1,1,1,1
+access_account_financial_levels_manager,account.financial.levels.manager,model_account_financial_levels,account.group_account_manager,1,1,1,1
+access_account_financial_report_trial_manager,account.financial.report.balance.manager,model_account_financial_report_trial,account.group_account_manager,1,1,1,1
+access_account_financial_report_trial_line_manager,account.financial.report.balance.line.manager,model_account_financial_report_trial_line,account.group_account_manager,1,1,1,1
+access_account_financial_report_balance_wizard_manager,account.financial.report.balance.wizard.manager,model_account_financial_report_balance_wizard,account.group_account_manager,1,1,1,1
+access_account_financial_report_assistant_wizard_manager,account.financial.report.assistant.wizard.manager,model_account_financial_report_assistant_wizard,account.group_account_manager,1,1,1,1
+access_excel_report_avancys_manager,excel.report.avancys.manager,model_excel_report_avancys,account.group_account_manager,1,1,1,1
+access_account_account_type_manager,account.account.type.manager,account.model_account_account_type,account.group_account_manager,1,1,1,1
+access_account_financial_report_taxes_wizard,account.financial.report.taxes.wizard.manager,model_account_financial_report_taxes_wizard,account.group_account_manager,1,1,1,1
+access_account_financial_report_taxes_manager,account.financial.report.taxes.manager,model_account_financial_report_taxes,account.group_account_manager,1,1,1,1
+access_account_financial_report_taxes_line_manager,account.financial.report.taxes.line.manager,model_account_financial_report_taxes_line,account.group_account_manager,1,1,1,1

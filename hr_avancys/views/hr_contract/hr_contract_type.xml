@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="hr_contract_type_action" model="ir.actions.act_window">
+        <field name="name">Tipo de Contrato</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.contract.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                    Crear Tipos de Contrato
+                </p>
+            <p></p>
+        </field>
+    </record>
+    <menuitem id="hr_contract_type_menu_act" name="Tipos de Contrato" parent="hr_avancys.hr_contract_menu_categ" action="hr_avancys.hr_contract_type_action" sequence="1" />
+</odoo>

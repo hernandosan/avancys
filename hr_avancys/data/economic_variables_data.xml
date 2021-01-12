@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+
+        <record model="economic.variable" id="ev_smmlv">
+            <field name="name">SALARIO MINIMO MENSUAL LEGAL VIGENTE</field>
+            <field name="code">SMMLV</field>
+            <field name="compute_value">False</field>
+        </record>
+
+        <record model="economic.variable" id="ev_sub_trans">
+            <field name="name">SUBSIDIO DE TRANSPORTE</field>
+            <field name="code">SUB_TRANS</field>
+            <field name="compute_value">False</field>
+        </record>
+
+        <record model="economic.variable" id="ev_uvt">
+            <field name="name">UNIDAD DE VALOR TRIBUTARIO</field>
+            <field name="code">UVT</field>
+            <field name="compute_value">False</field>
+        </record>
+
+        <record model="economic.variable" id="ev_tsdes">
+            <field name="name">TASA DE DESEMPLEO</field>
+            <field name="code">TSDES</field>
+            <field name="compute_value">False</field>
+        </record>
+
+        <record model="economic.variable" id="ev_trtefte">
+            <field name="name">TABLA DE RETENCIÓN EN LA FUENTE</field>
+            <field name="code">TRTEFTE</field>
+            <field name="compute_value">True</field>
+        </record>
+
+    </data>
+</odoo>

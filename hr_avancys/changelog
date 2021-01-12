@@ -1,0 +1,70 @@
+From v8 to v14
+Contracts:
+hr.contract
+    riesgo->risk
+    pct_arp->risk_percentage
+    ciudad_contract->contract_city_id
+    ciudad_desempeno->work_city_id
+    group_id->contract_group_id
+    cajacomp->ccf_id
+    arl->arl_id
+    pensiones->afp_pension_id
+    cesantias->afp_severance_id
+    eps_historic_ids->eps_history_ids
+    pensiones_historic_ids->pension_history_ids
+    cesantias_historic_ids->severance_history_ids
+    type_id->contract_type_id
+    bono -> bonus
+    skip_aux_trans -> skip_commute_allowance
+    aux_connectivity -> remote_work_allowance
+    app_prod_date -> apprentice_to_worker_date
+    smmlv -> minimum_wage
+    ded_limit -> limit_deductions
+    working_hours -> resource_calendar_id
+    fix_end -> date_end
+    date_end -> settlement_date
+    payslip_period_id -> settlement_period_id
+    separation_type -> settlement_type
+        retvoltra -> vol
+        terlabcon -> lab
+        canjuscau -> causa
+        terconpba -> prueba
+        retnotjuscau -> n_causa
+        expplafij -> exp
+        decunicom -> unil
+        fal -> fal
+        pen -> pen
+        nolab -> nolab
+        termutacu -> mutuo
+    ded_dependents -> deduction_dependents
+    ded_living -> deduction_by_estate
+    ded_prepaid -> deduction_by_healthcare
+    analytic_account_ids -> analytic_distribution_ids
+    p2 -> apply_procedure_2
+    rtf_rate -> withholding_percent
+    rtf_log -> withholding_log_ids
+    slip_ids -> payslip_ids
+    extension_ids -> contract_extension_ids
+
+hr.contract.risk
+    pct_risk->risk_percentage
+
+hr.contract.eps.change->eps.update.history
+    eps->eps_id
+
+hr.contract.pensiones.change->pension.update.history
+    pensiones->afp_pension_id
+
+hr.contract.cesantias.change->severance.update.history
+    cesantias->afp_severance_id
+
+hr.contract.salary.change->wage.update.history
+
+hr.dotacion -> hr.equipment
+    prodlot_id->product_lot_id
+    document->amount_info
+    dotacion_id->contract_id
+
+hr.contract.distribution.analytic -> hr.contract.analytic.distribution
+
+hr.contract.rtf.log -> hr.contract.withholding.log

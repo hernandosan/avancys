@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <menuitem id="electronic_invoice_menu" name="Facturación Electrónica" parent="account.menu_finance_configuration" sequence="2"/>
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="view_excel_report_avancys" model="ir.ui.view">
+            <field name="name">view.excel.avancys.report</field>
+            <field name="model">excel.report.avancys</field>
+            <field name="arch" type="xml">
+                <form string="Generar Excel Documento">
+                    <group>
+                        <field name="file_name" invisible="1"/>
+                        <field name="excel_file" readonly="1" filename="file_name"/>
+                    </group>
+                    <footer>
+                        <button string="Cancelar" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>

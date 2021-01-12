@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data noupdate="0">
+        <record id="ei_transaction_log_form" model="ir.ui.view">
+            <field name="name">ei.transaction.log.form</field>
+            <field name="model">ei.transaction.log</field>
+            <field name='type'>form</field>
+            <field name="arch" type="xml">
+                <form string="Log de Factura Electrónica" create="false" edit="false">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="date" />
+                            </group>
+                            <group>
+                                <field name="document_state" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Contenido">
+                                <field name="data" />
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

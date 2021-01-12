@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+
+        <record id="hr_concept_form" model="ir.ui.view">
+            <field name="name">hr.concept.form</field>
+            <field name="model">hr.concept</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="model_basic_payslip_novelty_type_form" />
+            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/div[@name='title']" position='inside'>
+                    <h1>Concepto de Nómina</h1>
+                </xpath>
+                <xpath expr="//sheet/notebook//page[@name='page_setup']/group[@name='group_setup']" position='after'>
+                    <group name='group_info' string="Información">
+                        <field name="documentation" nolabel="1" />
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="hr_concept_tree" model="ir.ui.view">
+            <field name="name">hr.concept.tree</field>
+            <field name="model">hr.concept</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="code" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="hr_concept_action" model="ir.actions.act_window">
+            <field name="name">Conceptos de Nómina</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.concept</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="hr_concept_menu_act" name="Conceptos de Nómina" parent="setup_payslip_menu_categ" action="hr_concept_action" sequence="2" />
+
+    </data>
+</odoo>

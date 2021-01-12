@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="action_analytic_account_avancys_form" model="ir.actions.act_window">
+            <field name="name">Cuentas Anliticas</field>
+            <field name="res_model">account.analytic.account</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Agregar Nueva Cuenta Analitica
+              </p>
+            </field>
+        </record>
+
+        <menuitem 
+            id="action_analytic_account_avancys_menu" 
+            name="Cuentas Analiticas" 
+            parent="account.account_account_menu" 
+            sequence="21" 
+            action="action_analytic_account_avancys_form" 
+            groups="account.group_account_manager"/>
+        
+        <record id="view_account_analytic_account_avancys_form" model="ir.ui.view">
+            <field name="name">view.account.analytic.account.avancys.form</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="analytic.view_account_analytic_account_form"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="city_id"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data noupdate="0">
+        <record model="ir.module.category" id="module_category_electronic_invoice_dian">
+            <field name="name">Facturación Electrónica DIAN</field>
+        </record>
+        <record model="res.groups" id="group_manager">
+            <field name="name">Administrador</field>
+            <field name="category_id" ref="module_category_electronic_invoice_dian" />
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]" />
+        </record>
+        <record model="res.groups" id="group_user">
+            <field name="name">Usuario</field>
+            <field name="category_id" ref="module_category_electronic_invoice_dian" />
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]" />
+        </record>
+        <record model="ir.rule" id="electronic_invoice_resolution_rule">
+            <field name="name">Resolución de Facturación Electronica: multi-company</field>
+            <field name="model_id" ref="model_electronic_invoice_resolution" />
+            <field name="global" eval="True" />
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+    </data>
+</odoo>

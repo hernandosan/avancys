@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+
+        <record id="hr_employee_avancys_form" model="ir.ui.view">
+            <field name="name">hr.employee.avancys.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/div/h1/field[@name='name']" position="replace">
+                    <field name="partner_id" placeholder="Contacto" />
+                </xpath>
+                <xpath expr="//notebook/page[@name='hr_settings']/group/group/field[@name='user_id']" position="replace">
+                    <field name="user_id" string="Usuario Odoo AVANCYS" />
+                    <field name="active" nolabel="0" />
+                </xpath>
+                <xpath expr="//notebook/page[@name='personal_information']/group/group/field[@name='address_home_id']" position="replace">
+                    <field name="address_home_id" invisible="1" />
+                    <field name="country_partner_id" />
+                    <field name="state_partner_id" />
+                    <field name="city_partner_id" />
+                    <span class="o_form_label o_td_label" name="address_name" string="Dirección" />
+                    <div class="o_row">
+                        <field name="street" class="o_address_street" nolabel="1" />
+                        <field name="street2" class="o_address_street" nolabel="1" placeholder="Complemento" />
+                    </div>
+                </xpath>
+
+                <xpath expr="//notebook/page[@name='personal_information']/group/group[5]" position="replace" />
+                <xpath expr="//notebook" position='inside'>
+                    <page name="page_emergency" string="Contactos de emergencia">
+                        <field name="emergency_contact_ids">
+                            <tree>
+                                <field name="name" />
+                                <field name="phone" />
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+                <!-- emergency_contact_ids -->
+
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

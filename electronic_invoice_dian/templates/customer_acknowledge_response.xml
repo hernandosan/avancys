@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="customer_accept_invoice">
+
+            <title>Factura Aceptada</title>
+
+            <div style="border-radius: 2px; max-width: 1200px; height: auto;margin-left: auto;margin-right: auto;background-color:#f9f9f9;">
+                <div style="height:auto;text-align: center;font-size : 30px;color: #3b9c17;">
+                    <strong>Factura Aceptada</strong>
+                </div>
+                <div style="height: 50px;text-align: center;font-size : 10px;border-collapse: separate;margin-top:10px">
+                    <p style="margin-left:12px">
+                        Por Avancys SAS <a href="https://www.avancys.com">https://www.avancys.com</a> Proveedor tecnologico.
+                    </p>
+                </div>
+
+            </div>
+
+        </template>
+        <template id="customer_reject_invoice">
+
+            <title>Factura Rechazada</title>
+
+            <div style="border-radius: 2px; max-width: 1200px; height: auto;margin-left: auto;margin-right: auto;background-color:#f9f9f9;">
+                <div style="height:auto;text-align: center;font-size : 30px;color: #d66058;">
+                    <strong>Factura Rechazada</strong>
+                </div>
+                <div style="height: 50px;text-align: center;font-size : 10px;border-collapse: separate;margin-top:10px">
+                    <p style="margin-left:12px">
+                        Por Avancys SAS <a href="https://www.avancys.com">https://www.avancys.com</a> Proveedor tecnologico.
+                    </p>
+                </div>
+
+            </div>
+
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="account_advance_supplier_sequence" model="ir.sequence">
+            <field name="name">Numero de secuencia Anticipo Proveedores</field>
+            <field name="code">account.advance.supplier.sequence</field>
+            <field name="number_increment">1</field>
+            <field name="number_next">1</field>
+            <field name="prefix">ADV-</field>
+            <field name="padding">10</field>
+        </record>
+
+        <record id="account_advance_customer_sequence" model="ir.sequence">
+            <field name="name">Numero de secuencia Anticipo Clientes</field>
+            <field name="code">account.advance.customer.sequence</field>
+            <field name="number_increment">1</field>
+            <field name="number_next">1</field>
+            <field name="prefix">AC-</field>
+            <field name="padding">10</field>
+        </record>
+    </data>
+</odoo>

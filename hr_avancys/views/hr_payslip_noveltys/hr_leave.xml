@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+
+        <record id="hr_leave_form" model="ir.ui.view">
+            <field name="name">hr.leave.form</field>
+            <field name="model">hr.leave</field>
+            <field name="inherit_id" ref="model_basic_payslip_novelty_form" />
+            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/group[@name='group_basic_data']/group/field[@name='approve_date']" position='after'>
+                    <field name="category_type" invisible="1" />
+                    <field name="days_vac_money" attrs="{'invisible': [('category_type','!=','VAC_MONEY')], 'readonly':[('state','!=','draft')]}" />
+                </xpath>
+                <xpath expr="//sheet/group[@name='group_basic_data']/group/span[@name='label_dates']" position='inside'>
+                    <b>Duración</b>
+                </xpath>
+                <xpath expr="//sheet/group[@name='group_basic_data']/group/div[@name='div_dates']" position='after'>
+                    <field name="cause_id" attrs="{'readonly':[('state','!=','draft')], 'invisible': [('category_type','not in',('SICKNESS', 'AT_EP'))]}" />
+                    <field name="number_order_eps" attrs="{'readonly':[('state','!=','draft')], 'invisible': [('category_type','not in',('SICKNESS', 'AT_EP'))]}" />
+                </xpath>
+                <xpath expr="//sheet/group[@name='group_basic_data']/group/field[@name='amount']" position='attributes'>
+                    <attribute name="readonly">1</attribute>
+                </xpath>
+                <xpath expr="//sheet/group[@name='group_basic_data']/group/field[@name='company_id']" position='after'>
+                    <field name="leave_type_id" attrs="{'readonly':[('state','!=','draft')]}" />
+                    <label for="extension_id" attrs="{'invisible': [('category_type','not in',('SICKNESS', 'AT_EP'))]}" />
+                    <div name="div_extension" class="o_row" attrs="{'invisible': [('category_type','not in',('SICKNESS', 'AT_EP'))]}">
+                        <field name="is_extension" nolabel="1" attrs="{'readonly':[('state','!=','draft')]}" />
+                        <field name="extension_id" nolabel="1" attrs="{'readonly':[('state','!=','draft')], 'invisible':[('is_extension', '=', False)]}" options="{'no_create': True}" domain="[('contract_id','=',contract_id), ('state', 'in', ('validated', 'paid')), ('leave_type_id', '=', leave_type_id)]" />
+                    </div>
+                </xpath>
+                <xpath expr="//sheet/group[@name='group_basic_data']" position='after'>
+                    <notebook>
+                        <page name='page_leave_line' string="Lineas de Ausencia">
+                            <field name="leave_line_ids">
+                                <tree>
+                                    <field name="sequence" />
+                                    <field name="date" />
+                                    <field name="period_id" />
+                                    <field name="amount" />
+                                    <field name="state" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="hr_leave_tree" model="ir.ui.view">
+            <field name="name">hr.leave.tree</field>
+            <field name="model">hr.leave</field>
+            <field name="type">tree</field>
+            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="contract_id" />
+                    <field name="leave_type_id" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="hr_leave_action" model="ir.actions.act_window">
+            <field name="name">Ausencias</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.leave</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="hr_leave_menu_act" name="Ausencias" parent="novelty_menu_categ" action="hr_leave_action" sequence="1" />
+
+    </data>
+
+    <data noupdate="1">
+        <record id="seq_hr_leave" model="ir.sequence">
+            <field name="name">Número Ausencia</field>
+            <field name="code">seq.hr.leave</field>
+            <field name="prefix">AUS-</field>
+            <field name="padding">10</field>
+        </record>
+    </data>
+</odoo>

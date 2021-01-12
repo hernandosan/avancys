@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+
+        <record id="hr_payslip_form" model="ir.ui.view">
+            <field name="name">hr.payslip.form</field>
+            <field name="model">hr.payslip</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="compute_slip" string="Calcular" type="object" attrs="{'invisible':[('state','!=','draft')]}" />
+                        <button name="to_paid" string="Causar" type="object" attrs="{'invisible':[('state','!=','draft')]}" />
+                        <button name="to_draft" string="Pasar a borrador" type="object" attrs="{'invisible':[('state','!=','paid')]}" />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,paid" />
+                    </header>
+                    <sheet>
+                        <div name="title">
+                            <h1>
+                                <field name="name" />
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="contract_id" attrs="{'readonly': [('state','=','paid')]}" />
+                                <field name="liquidation_date" attrs="{'readonly': [('state','=','paid')]}" />
+                                <field name="period_id" attrs="{'readonly': [('state','=','paid')]}" />
+                            </group>
+                            <group>
+                                <field name="employee_id" attrs="{'readonly': [('state','=','paid')]}" />
+                                <field name="accounting_date" attrs="{'readonly': [('state','=','paid')]}" />
+                                <field name="payslip_type_id" attrs="{'readonly': [('state','=','paid')]}" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="page_concepts" string="Detalle de nómina">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="alert alert-success">
+                                            <b>Devengos</b>
+                                        </div>
+                                        <field name="earnings_ids" class="col-md-12" mode="kanban" context="{'kanban_view_ref':'hr_payslip_line_kanban'}" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="alert alert-danger">
+                                            <b>Deducciones</b>
+                                        </div>
+                                        <field name="deductions_ids" class="col-md-12" mode="kanban" context="{'kanban_view_ref':'hr_payslip_line_kanban'}" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="alert alert-success">
+                                            <b>Algo</b>
+                                        </div>
+                                        <!-- <field name="earnings_ids" mode="kanban" context="{'kanban_view_ref':'hr_payslip_line_kanban'}" /> -->
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="alert alert-primary">
+                                            <b>Neto</b>
+                                        </div>
+                                        <field name="outcome_ids" class="col-md-12" mode="kanban" context="{'kanban_view_ref':'hr_payslip_line_kanban'}" />
+                                    </div>
+                                </div>
+                            </page>
+                            <page name="page_payslip_days" string="Detalle de días">
+                                <field name="payslip_day_ids">
+                                    <tree>
+                                        <field name="day" />
+                                        <field name="day_type" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page name="page_error_log" string="Detalle de errores">
+                                <field name="error_log" />
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_payslip_tree" model="ir.ui.view">
+            <field name="name">hr.payslip.tree</field>
+            <field name="model">hr.payslip</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="employee_id" />
+                    <field name="contract_id" />
+                    <field name="payslip_type_id" />
+                    <field name="period_id" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="hr_payslip_action" model="ir.actions.act_window">
+            <field name="name">Nóminas</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.payslip</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="hr_payslip_menu_act" name="Nóminas" parent="payslip_menu_categ" action="hr_payslip_action" sequence="1" />
+
+    </data>
+
+    <data noupdate="1">
+        <record id="seq_hr_payslip" model="ir.sequence">
+            <field name="name">Número Nómina</field>
+            <field name="code">seq.hr.payslip</field>
+            <field name="prefix">NOM-</field>
+            <field name="padding">10</field>
+        </record>
+    </data>
+</odoo>

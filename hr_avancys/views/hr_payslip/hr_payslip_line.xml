@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+
+        <record id="hr_payslip_line_kanban" model="ir.ui.view">
+            <field name="name">hr.payslip.line.kanban</field>
+            <field name="model">hr.payslip.line</field>
+            <field name="arch" type="xml">
+                <kanban string="Kanban Description">
+                    <field name="name" />
+                    <field name="value" />
+                    <field name="qty" />
+                    <field name="rate" />
+                    <field name="total" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_card oe_kanban_global_click panel-body" style="margin-top: 0px; margin-bottom: 0px;">
+                                <span style="float: left; width: 20%;">
+                                    <field name="name" nolabel="1" />
+                                </span>
+                                <span style="float: left; width: 20%;">
+                                    <field name="value" nolabel="1" />
+                                </span>
+                                <span style="float: left; width: 20%;">
+                                    <field name="qty" nolabel="1" />
+                                </span>
+                                <span style="float: left; width: 20%;">
+                                    <field name="rate" nolabel="1" />
+                                    %
+                                </span>
+                                <span style="float: left; width: 20%;">
+                                    <field name="total" nolabel="1" />
+                                </span>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+    </data>
+</odoo>
