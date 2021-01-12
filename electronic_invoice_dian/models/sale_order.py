@@ -20,5 +20,5 @@ class SaleOrder(models.Model):
 
     @api.constrains('customer_po_file')
     def _check_file_size(self):
-        if len(self.customer_po_file) * DATASIZE_RATIO > MAX_FILE_SIZE:
+        if self.customer_po_file and len(self.customer_po_file) * DATASIZE_RATIO > MAX_FILE_SIZE:
             raise ValidationError(MAX_SIZE_WARN)
