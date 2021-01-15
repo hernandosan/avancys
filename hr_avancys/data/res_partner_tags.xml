@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_partner_category_mostrador" model="res.partner.category">
+            <field name="name">Mostrador</field>
+            <field name="color" eval="2"/>
+        </record>
+        <record id="res_partner_category_contado" model="res.partner.category">
+            <field name="name">Contado</field>
+            <field name="color" eval="3"/>
+        </record>
+        <record id="res_partner_category_credito" model="res.partner.category">
+            <field name="name">Credito</field>
+            <field name="color" eval="4"/>
+        </record>
+        <record id="res_partner_category_otro" model="res.partner.category">
+            <field name="name">Otro</field>
+            <field name="color" eval="5"/>
+        </record>
+    </data>
+</odoo>

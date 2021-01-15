@@ -52,6 +52,7 @@ Procesos:
         'data/hr_concept_data.xml',
         'data/economic_variables_data.xml',
         'data/hr_leave_cause_data.xml',
+        'data/res_partner_tags.xml',
 
         'views/hr_payslip_noveltys/model_basic_payslip_novelty_type.xml',
         'views/hr_payslip_noveltys/model_basic_payslip_novelty.xml',
